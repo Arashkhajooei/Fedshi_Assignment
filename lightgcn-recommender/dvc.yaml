@@ -1,0 +1,20 @@
+stages:
+  train_lightgcn:
+    cmd: python scripts/train_lightgcn.py
+    deps:
+    - data/Ratings.csv
+    - scripts/train_lightgcn.py
+    params:
+    - lightgcn.batch_size
+    - lightgcn.emb_dim
+    - lightgcn.epochs
+    - lightgcn.learning_rate
+    - lightgcn.like_th
+    - lightgcn.n_layers
+    - lightgcn.weight_decay
+    outs:
+    - artifacts/embeddings.pt
+    - artifacts/loss.csv
+    - artifacts/ndcg.csv
+    - artifacts/recall.csv
+    - models/lightgcn.pt
