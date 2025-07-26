@@ -2,19 +2,18 @@ stages:
   train_lightgcn:
     cmd: python scripts/train_lightgcn.py
     deps:
-    - data/Ratings.csv
-    - scripts/train_lightgcn.py
-    params:
-    - lightgcn.batch_size
-    - lightgcn.emb_dim
-    - lightgcn.epochs
-    - lightgcn.learning_rate
-    - lightgcn.like_th
-    - lightgcn.n_layers
-    - lightgcn.weight_decay
+      - scripts/train_lightgcn.py
+      - data/Ratings.csv
     outs:
-    - artifacts/embeddings.pt
-    - artifacts/loss.csv
-    - artifacts/ndcg.csv
-    - artifacts/recall.csv
-    - models/lightgcn.pt
+      - artifacts/embeddings.pt
+      - artifacts/metrics_plot.png
+      - models/lightgcn_model.pt
+    metrics:
+      - artifacts/metrics.json:
+          cache: false
+
+  ui:
+    cmd: streamlit run scripts/app.py
+    deps:
+      - scripts/app.py
+      - artifacts/embeddings.pt

@@ -169,3 +169,33 @@ torch.save({
     "book2idx": book2idx,
     "idx2book": {v: k for k, v in book2idx.items()}
 }, "artifacts/embeddings.pt")
+
+# ─── 11 │ Save Model + Metrics + Embeddings ─────────────────────────────
+import os, json
+
+os.makedirs("models", exist_ok=True)
+os.makedirs("artifacts", exist_ok=True)
+
+# Save model
+torch.save(model.state_dict(), "models/lightgcn_model.pt")
+
+# Save embeddings
+user_emb, item_emb = model.compute_embeddings()
+torch.save({
+    "user_embedding": user_emb.cpu(),
+    "item_embedding": item_emb.cpu(),
+    "user2idx": user2idx,
+    "book2idx": book2idx,
+    "idx2book": {v: k for k, v in book2idx.items()}
+}, "artifacts/embeddings.pt")
+
+# Save metrics JSON
+with open("artifacts/metrics.json", "w") as f:
+    json.dump({
+        "recall@10": recall_hist[-1],
+        "ndcg@10": ndcg_hist[-1],
+        "final_loss": loss_hist[-1]
+    }, f, indent=2)
+
+# Save performance plot
+plt.savefig("artifacts/metrics_plot.png")

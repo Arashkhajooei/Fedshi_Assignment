@@ -3,10 +3,12 @@ import torch
 import pandas as pd
 import numpy as np
 
-# Load embeddings and mappings
+import torch.serialization  # make sure this is imported
+
 @st.cache_data
 def load_embeddings():
-    data = torch.load("artifacts/embeddings.pt", map_location="cpu")
+    with torch.serialization.safe_globals([np.core.multiarray.scalar]):
+        data = torch.load("artifacts/embeddings.pt", map_location="cpu", weights_only=False)
     return (
         data["user_embedding"],
         data["item_embedding"],
@@ -14,6 +16,7 @@ def load_embeddings():
         data["book2idx"],
         data["idx2book"]
     )
+
 
 # Load book metadata
 @st.cache_data
