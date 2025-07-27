@@ -106,7 +106,7 @@ cd Fedshi_Assignment/lightgcn-recommender
 
 # Install dependencies
 pip install -r requirements.txt
-
+```
 
 ### 📥 Fetch Data (if using DVC)
 
@@ -117,8 +117,9 @@ dvc pull
 
 # Standard Python script
 python scripts/train_lightgcn.py
-
+```
 # Or via DVC
+```bash
 dvc repro train_lightgcn
 
 # User-based recommendation UI
@@ -126,3 +127,4 @@ streamlit run scripts/app.py
 
 # Full dashboard (user + item similarity)
 streamlit run scripts/streamlit_dashboard.py
+```
