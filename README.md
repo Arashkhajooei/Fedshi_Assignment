@@ -118,13 +118,11 @@ dvc pull
 # Standard Python script
 python scripts/train_lightgcn.py
 ```
-# Or via DVC
+### Or via DVC
 ```bash
 dvc repro train_lightgcn
 
-# User-based recommendation UI
+# Full dashboard (user + item similarity)
 streamlit run scripts/app.py
 
-# Full dashboard (user + item similarity)
-streamlit run scripts/streamlit_dashboard.py
 ```
