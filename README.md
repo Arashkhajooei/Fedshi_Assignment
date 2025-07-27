@@ -44,7 +44,7 @@ These enriched files capture titles, authors, genres, and ratings information.
 
 Located in: `lightgcn-recommender/`
 
-### 🏋️‍♂️ Training Script
+### Training Script
 - `scripts/train_lightgcn.py`:
   - Loads and splits ratings data.
   - Builds a bipartite interaction graph.
@@ -87,7 +87,7 @@ Located in: `lightgcn-recommender/`
 
 ---
 
-## 🧰 Other Assets
+## Other Assets
 
 - 📷 **Images**:
   - `NCF.png`, `output.png`, `output2.png`, `output3.png`, `Colabrating Filtering Result.png`
