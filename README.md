@@ -1,7 +1,10 @@
 # Fedshi_Assignment
 
 This project builds a **book‑recommendation system** based on the [Book‑Crossing dataset](https://www2.informatik.uni-freiburg.de/~cziegler/BX/) and explores multiple recommendation strategies. The repository contains data cleaning and enrichment notebooks, simple baseline models, a full graph‑based recommender trained with **LightGCN**, and Streamlit dashboards for interactive exploration.
-<img src="./overview.png" alt="System Overview" width="600"/>
+<p align="center">
+  <img src="./overview.png" alt="System Overview" width="600"/>
+</p>
+
 
 ---
 
