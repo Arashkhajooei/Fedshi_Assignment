@@ -11,9 +11,3 @@ stages:
     metrics:
       - artifacts/metrics.json:
           cache: false
-
-  ui:
-    cmd: streamlit run scripts/app.py
-    deps:
-      - scripts/app.py
-      - artifacts/embeddings.pt
