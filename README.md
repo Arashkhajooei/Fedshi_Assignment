@@ -24,12 +24,12 @@ These enriched files capture titles, authors, genres, and ratings information.
 
 ### 🔸 Baseline Models
 
-#### 📈 Popularity-Based Recommender
+####  Popularity-Based Recommender
 - Script: `Popularity-Based.py`
 - Uses `Streamlit` and `pandas` to show top-rated books by frequency.
 - A basic benchmark for evaluating advanced models.
 
-#### 🤝 Collaborative Filtering
+####  Collaborative Filtering
 - Notebook: `Collaborative-Filtering.ipynb`
 - Stub: `Collaborative-Filtering.py`
 - Applies matrix factorization and collaborative filtering to the ratings matrix.
@@ -108,7 +108,7 @@ cd Fedshi_Assignment/lightgcn-recommender
 pip install -r requirements.txt
 ```
 
-### 📥 Fetch Data (if using DVC)
+### Fetch Data (if using DVC)
 
 ```bash
 dvc pull
