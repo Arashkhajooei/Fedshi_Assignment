@@ -25,6 +25,72 @@ These enriched files capture titles, authors, genres, and ratings information.
 - Intermediate results live in the root directory.
 
 ---
+## 🔍 Metadata Enrichment & Clustering Pipeline
+
+To build a smarter recommendation engine beyond user-item ratings, this project enriches book metadata using GPT and organizes it via semantic clustering. Here's how it works:
+
+---
+
+### 📘 Step 1: Metadata Enrichment via GPT
+
+The original Book-Crossing dataset lacked rich metadata. To solve this, we developed a scalable microservice that uses **OpenAI's GPT API** to extract and generate the following fields for each book:
+
+- **Summary** – A concise synopsis of the book
+- **Genre** – Literary style (e.g., Thriller, Sci-Fi, Biography)
+- **Category** – Broad classification (e.g., Fiction, Non-fiction)
+- **Theme** – Narrative motifs (e.g., Love, War, Redemption)
+- **Tone** – Emotional flavor (e.g., Dark, Uplifting, Informative)
+- **Audience** – Target reader group (e.g., Children, Adults, Academics)
+
+The enrichment process uses:
+- ✅ Asynchronous batching for performance
+- 🔁 Exponential backoff retries for stability
+- 🧩 Auto-alignment to handle missing fields
+
+---
+
+### Step 2: Clustering Enriched Metadata
+
+Once enriched, the metadata is clustered for normalization and analysis:
+
+- We use **SentenceTransformer** (`all-MiniLM-L6-v2`) to embed each field
+- **KMeans** clustering is applied independently per metadata column
+- Optimal `n_clusters` values are tuned per column (e.g., genre: 20, theme: 25)
+
+Each book receives a cluster label per field:
+- `genre_cluster`, `category_cluster`, `theme_cluster`, `tone_cluster`, `audience_cluster`
+
+---
+
+### 🏷️ Step 3: Replacing Clusters with Human-Friendly Labels
+
+To make clusters interpretable:
+- We assign each cluster the **most common label** inside that group
+- The result is a unified version of `genre`, `category`, `theme`, etc.
+- Final output: `final_normalized_metadata.csv` with cleaned, readable fields
+
+---
+
+### 📊 Step 4: Analysis & Visualization
+
+We explore metadata relationships using:
+- **Seaborn heatmaps** to show co-occurrence patterns
+- **3D semantic surface plots** (e.g., Genre × Audience → Tone)
+- **KDE pairplots** to visualize metadata distributions
+- Combined heatmaps to assess cluster alignment across fields
+
+---
+
+### 🚀 Use Cases
+
+- Cold-start user handling using semantic groupings
+- Metadata-based filtering and faceted browsing
+- Enhanced content-based recommendation using unified attributes
+
+---
+
+*See `scripts/` and `notebooks/` for enrichment and clustering code.*
+
 
 ### 🔸 Baseline Models
 
